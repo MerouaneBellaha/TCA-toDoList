@@ -9,22 +9,24 @@
 /* Begin PBXBuildFile section */
 		CB19B37C252311140078CD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B37B252311140078CD5F /* AppDelegate.swift */; };
 		CB19B37E252311140078CD5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B37D252311140078CD5F /* SceneDelegate.swift */; };
-		CB19B380252311140078CD5F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B37F252311140078CD5F /* ContentView.swift */; };
+		CB19B380252311140078CD5F /* TaskAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B37F252311140078CD5F /* TaskAppView.swift */; };
 		CB19B382252311140078CD5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB19B381252311140078CD5F /* Assets.xcassets */; };
 		CB19B385252311140078CD5F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB19B384252311140078CD5F /* Preview Assets.xcassets */; };
 		CB19B388252311140078CD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB19B386252311140078CD5F /* LaunchScreen.storyboard */; };
 		CB19B392252313430078CD5F /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CB19B391252313430078CD5F /* ComposableArchitecture */; };
+		CB1D2BCE25233A78009BF3DC /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D2BCD25233A78009BF3DC /* TaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CB19B378252311140078CD5F /* TCA-ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCA-ToDoList.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB19B37B252311140078CD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB19B37D252311140078CD5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB19B37F252311140078CD5F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB19B37F252311140078CD5F /* TaskAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAppView.swift; sourceTree = "<group>"; };
 		CB19B381252311140078CD5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB19B384252311140078CD5F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB19B387252311140078CD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB19B389252311140078CD5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB1D2BCD25233A78009BF3DC /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 			children = (
 				CB19B37B252311140078CD5F /* AppDelegate.swift */,
 				CB19B37D252311140078CD5F /* SceneDelegate.swift */,
-				CB19B37F252311140078CD5F /* ContentView.swift */,
+				CB1D2BCD25233A78009BF3DC /* TaskView.swift */,
+				CB19B37F252311140078CD5F /* TaskAppView.swift */,
 				CB19B381252311140078CD5F /* Assets.xcassets */,
 				CB19B386252311140078CD5F /* LaunchScreen.storyboard */,
 				CB19B389252311140078CD5F /* Info.plist */,
@@ -155,7 +158,8 @@
 			files = (
 				CB19B37C252311140078CD5F /* AppDelegate.swift in Sources */,
 				CB19B37E252311140078CD5F /* SceneDelegate.swift in Sources */,
-				CB19B380252311140078CD5F /* ContentView.swift in Sources */,
+				CB19B380252311140078CD5F /* TaskAppView.swift in Sources */,
+				CB1D2BCE25233A78009BF3DC /* TaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

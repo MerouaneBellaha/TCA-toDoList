@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TaskAppView.swift
 //  TCA-ToDoList
 //
 //  Created by Merouane Bellaha on 29/09/2020.
@@ -8,26 +8,17 @@
 import SwiftUI
 import ComposableArchitecture
 
-
-struct Task: Equatable, Identifiable {
-    var description = ""
-    let id: UUID
-    var isComplete = false
-}
-
 // MARK: - State
-//
 
 struct AppState: Equatable {
     var tasks: [Task]
 }
 
 // MARK: - Action
-//
 
 enum AppAction {
-    case taskCheckboxTapped(index: Int)
-    case taskTextFieldChanged(index: Int, text: String)
+    case todo(index: Int, action: TaskAction)
+    case addButtonTapped
 }
 
 // MARK: - Environment
@@ -41,21 +32,25 @@ struct AppEnvironment {
 // glues state, action and environment into a cohesive package
 // responsible for the business logic that runs the app
 
-let appReducer = Reducer<AppState, AppAction, AppEnvironment>
-{ state, action, environment in
-    switch action {
-    case .taskCheckboxTapped(let index):
-        state.tasks[index].isComplete.toggle()
-    case .taskTextFieldChanged(let index, let text):
-        state.tasks[index].description = text
+let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
+    taskReducer.forEach(
+        state: \.tasks,
+        action: /AppAction.todo,
+        environment: { _ in TaskEnvironment() }
+    ),
+    Reducer { state, action, environment in
+        switch action {
+        case .todo:
+            return .none
+        case .addButtonTapped:
+            state.tasks.insert(Task(id: UUID()), at: 0)
+        }
+        return .none
     }
-    // return effect ( side effect ) or .none
-    return .none
-}
-// print action & state modification
+)
 .debug()
 
-struct ContentView: View {
+struct TaskAppView: View {
 
     // MARK: - Store
 
@@ -65,25 +60,19 @@ struct ContentView: View {
         NavigationView {
             WithViewStore(store) { viewStore in
                 List {
-                    ForEach(Array(viewStore.tasks.enumerated()), id: \.element.id) { index, task in
-                        HStack {
-                            Button(action: { viewStore.send(.taskCheckboxTapped(index: index)) }) {
-                                Image(systemName: task.isComplete ? "checkmark.square" : "square")
-                            }
-                            .buttonStyle(PlainButtonStyle())
-
-                            TextField(
-                                "Untitled todo",
-                                text: viewStore.binding(
-                                    get: { $0.tasks[index].description },
-                                    send: { .taskTextFieldChanged(index: index, text: $0) }
-                                )
-                            )
-                        }
-                        .foregroundColor(task.isComplete ? .gray : .none)
-                    }
+                    ForEachStore(
+                        store.scope(
+                            state: \.tasks,
+                            action: AppAction.todo
+                        ),
+                        content: TaskView.init(store:)
+                    )
                 }
                 .navigationTitle("Tasks")
+                .navigationBarItems(trailing: Button("add") {
+                    viewStore.send(.addButtonTapped)
+                })
+
             }
         }
     }
@@ -91,7 +80,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(
+        TaskAppView(
             store: Store(
                 initialState: AppState(
                     tasks: [
