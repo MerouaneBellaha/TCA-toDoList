@@ -11,21 +11,22 @@ import ComposableArchitecture
 // MARK: - State
 
 struct AppState: Equatable {
-    var tasks: [Task]
+    var tasks: [Task] = []
 }
 
 // MARK: - Action
 
-enum AppAction {
+enum AppAction: Equatable {
     case todo(index: Int, action: TaskAction)
     case addButtonTapped
+    case taskDelayCompleted
 }
 
 // MARK: - Environment
 // holds the dependencies
 
 struct AppEnvironment {
-
+    var uuid: () -> UUID
 }
 
 // MARK: - Reducer
@@ -40,12 +41,29 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     ),
     Reducer { state, action, environment in
         switch action {
-        case .todo:
+        
+        case .todo(index: _, action: .checkboxTapped):
+            struct CancelDelayID: Hashable {}
+            return Effect(value: AppAction.taskDelayCompleted)
+                .debounce(id: CancelDelayID(), for: 1, scheduler: DispatchQueue.main)
+
+        case .todo(index: _, action: .textFieldChanged):
             return .none
+
         case .addButtonTapped:
-            state.tasks.insert(Task(id: UUID()), at: 0)
+            state.tasks.insert(Task(id: environment.uuid()), at: 0)
+            return .none
+
+        case .taskDelayCompleted:
+            state.tasks = state.tasks
+                .enumerated()
+                .sorted { lhs, rhs in
+                    (!lhs.element.isComplete && rhs.element.isComplete)
+                        || lhs.offset < rhs.offset
+                }
+                .map(\.element)
+            return .none
         }
-        return .none
     }
 )
 .debug()
@@ -102,7 +120,9 @@ struct ContentView_Previews: PreviewProvider {
                     ]
                 ),
                 reducer: appReducer,
-                environment: AppEnvironment()
+                environment: AppEnvironment(
+                    uuid: UUID.init
+                )
             )
         )
     }

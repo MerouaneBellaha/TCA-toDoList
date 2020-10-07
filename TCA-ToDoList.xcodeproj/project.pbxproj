@@ -15,7 +15,18 @@
 		CB19B388252311140078CD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB19B386252311140078CD5F /* LaunchScreen.storyboard */; };
 		CB19B392252313430078CD5F /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CB19B391252313430078CD5F /* ComposableArchitecture */; };
 		CB1D2BCE25233A78009BF3DC /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D2BCD25233A78009BF3DC /* TaskView.swift */; };
+		CBC1A55A252B026200C290BA /* TaskAppTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1A559252B026200C290BA /* TaskAppTestCase.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CBC1A55C252B026200C290BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB19B370252311140078CD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB19B377252311140078CD5F;
+			remoteInfo = "TCA-ToDoList";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CB19B378252311140078CD5F /* TCA-ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCA-ToDoList.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +38,9 @@
 		CB19B387252311140078CD5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB19B389252311140078CD5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB1D2BCD25233A78009BF3DC /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		CBC1A557252B026200C290BA /* TCA-ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TCA-ToDoListTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBC1A559252B026200C290BA /* TaskAppTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAppTestCase.swift; sourceTree = "<group>"; };
+		CBC1A55B252B026200C290BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +52,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CBC1A554252B026200C290BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				CB19B37A252311140078CD5F /* TCA-ToDoList */,
+				CBC1A558252B026200C290BA /* TCA-ToDoListTests */,
 				CB19B379252311140078CD5F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				CB19B378252311140078CD5F /* TCA-ToDoList.app */,
+				CBC1A557252B026200C290BA /* TCA-ToDoListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +103,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CBC1A558252B026200C290BA /* TCA-ToDoListTests */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1A559252B026200C290BA /* TaskAppTestCase.swift */,
+				CBC1A55B252B026200C290BA /* Info.plist */,
+			);
+			path = "TCA-ToDoListTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,6 +135,24 @@
 			productReference = CB19B378252311140078CD5F /* TCA-ToDoList.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CBC1A556252B026200C290BA /* TCA-ToDoListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBC1A560252B026200C290BA /* Build configuration list for PBXNativeTarget "TCA-ToDoListTests" */;
+			buildPhases = (
+				CBC1A553252B026200C290BA /* Sources */,
+				CBC1A554252B026200C290BA /* Frameworks */,
+				CBC1A555252B026200C290BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBC1A55D252B026200C290BA /* PBXTargetDependency */,
+			);
+			name = "TCA-ToDoListTests";
+			productName = "TCA-ToDoListTests";
+			productReference = CBC1A557252B026200C290BA /* TCA-ToDoListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -114,6 +164,10 @@
 				TargetAttributes = {
 					CB19B377252311140078CD5F = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					CBC1A556252B026200C290BA = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = CB19B377252311140078CD5F;
 					};
 				};
 			};
@@ -134,6 +188,7 @@
 			projectRoot = "";
 			targets = (
 				CB19B377252311140078CD5F /* TCA-ToDoList */,
+				CBC1A556252B026200C290BA /* TCA-ToDoListTests */,
 			);
 		};
 /* End PBXProject section */
@@ -146,6 +201,13 @@
 				CB19B388252311140078CD5F /* LaunchScreen.storyboard in Resources */,
 				CB19B385252311140078CD5F /* Preview Assets.xcassets in Resources */,
 				CB19B382252311140078CD5F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBC1A555252B026200C290BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +225,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CBC1A553252B026200C290BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBC1A55A252B026200C290BA /* TaskAppTestCase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CBC1A55D252B026200C290BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB19B377252311140078CD5F /* TCA-ToDoList */;
+			targetProxy = CBC1A55C252B026200C290BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CB19B386252311140078CD5F /* LaunchScreen.storyboard */ = {
@@ -335,6 +413,46 @@
 			};
 			name = Release;
 		};
+		CBC1A55E252B026200C290BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K8M973GY56;
+				INFOPLIST_FILE = "TCA-ToDoListTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.merouanebellaha.TCA-ToDoListTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCA-ToDoList.app/TCA-ToDoList";
+			};
+			name = Debug;
+		};
+		CBC1A55F252B026200C290BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K8M973GY56;
+				INFOPLIST_FILE = "TCA-ToDoListTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.merouanebellaha.TCA-ToDoListTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCA-ToDoList.app/TCA-ToDoList";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -352,6 +470,15 @@
 			buildConfigurations = (
 				CB19B38D252311140078CD5F /* Debug */,
 				CB19B38E252311140078CD5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBC1A560252B026200C290BA /* Build configuration list for PBXNativeTarget "TCA-ToDoListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBC1A55E252B026200C290BA /* Debug */,
+				CBC1A55F252B026200C290BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
