@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import ComposableArchitecture
 
 // MARK: - State
@@ -27,6 +28,8 @@ enum AppAction: Equatable {
 
 struct AppEnvironment {
     var uuid: () -> UUID
+
+    var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
 // MARK: - Reducer
@@ -45,7 +48,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
         case .todo(index: _, action: .checkboxTapped):
             struct CancelDelayID: Hashable {}
             return Effect(value: AppAction.taskDelayCompleted)
-                .debounce(id: CancelDelayID(), for: 1, scheduler: DispatchQueue.main)
+                .debounce(id: CancelDelayID(), for: 1, scheduler: environment.mainQueue)
 
         case .todo(index: _, action: .textFieldChanged):
             return .none
@@ -121,7 +124,8 @@ struct ContentView_Previews: PreviewProvider {
                 ),
                 reducer: appReducer,
                 environment: AppEnvironment(
-                    uuid: UUID.init
+                    uuid: UUID.init,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )
         )
