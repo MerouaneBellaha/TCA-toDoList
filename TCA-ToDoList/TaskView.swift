@@ -19,7 +19,7 @@ struct Task: Equatable, Identifiable {
 
 // MARK: - Action
 
-enum TaskAction {
+enum TaskAction: Equatable {
     case checkboxTapped
     case textFieldChanged(String)
 }
