@@ -11,6 +11,8 @@ import XCTest
 
 class TaskAppTestCase: XCTestCase {
 
+    let scheduler = DispatchQueue.testScheduler
+
     func testCompletingTask() {
         let store = TestStore(
             initialState: AppState(
@@ -24,7 +26,8 @@ class TaskAppTestCase: XCTestCase {
             ),
             reducer: appReducer,
             environment: AppEnvironment(
-                uuid: { fatalError("Unimplemented") }
+                uuid: { fatalError("Unimplemented") },
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
 
@@ -33,7 +36,7 @@ class TaskAppTestCase: XCTestCase {
                 $0.tasks[0].isComplete = true
             },
             .do {
-                _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
+                self.scheduler.advance(by: 1)
             },
             .receive(.taskDelayCompleted)
         )
@@ -44,7 +47,8 @@ class TaskAppTestCase: XCTestCase {
             initialState: AppState(),
             reducer: appReducer,
             environment: AppEnvironment(
-                uuid: { UUID(uuidString: "00000000-0000-0000-0000-000000000000")!}
+                uuid: { UUID(uuidString: "00000000-0000-0000-0000-000000000000")!},
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
 
@@ -79,7 +83,8 @@ class TaskAppTestCase: XCTestCase {
             ),
             reducer: appReducer,
             environment: AppEnvironment(
-                uuid: { fatalError("Unimplemented") }
+                uuid: { fatalError("Unimplemented") },
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
 
@@ -88,7 +93,7 @@ class TaskAppTestCase: XCTestCase {
                 $0.tasks[0].isComplete = true
             },
             .do {
-                _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
+                self.scheduler.advance(by: 1)
             },
             .receive(.taskDelayCompleted) {
                 $0.tasks = [
@@ -125,7 +130,8 @@ class TaskAppTestCase: XCTestCase {
             ),
             reducer: appReducer,
             environment: AppEnvironment(
-                uuid: { fatalError("Unimplemented") }
+                uuid: { fatalError("Unimplemented") },
+                mainQueue: scheduler.eraseToAnyScheduler()
             )
         )
 
@@ -134,29 +140,15 @@ class TaskAppTestCase: XCTestCase {
                 $0.tasks[0].isComplete = true
             },
             .do {
-                _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 0.5)
+                self.scheduler.advance(by: 0.5)
             },
             .send(.todo(index: 0, action: .checkboxTapped)) {
                 $0.tasks[0].isComplete = false
             },
             .do {
-                _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
+                self.scheduler.advance(by: 1)
             },
             .receive(.taskDelayCompleted)
-//                {
-//                $0.tasks = [
-//                    Task(
-//                        description: "Milk",
-//                        id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,
-//                        isComplete: true
-//                    ),
-//                    Task(
-//                        description: "Eggs",
-//                        id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
-//                        isComplete: true
-//                    )
-//                ]
-//            }
         )
     }
 

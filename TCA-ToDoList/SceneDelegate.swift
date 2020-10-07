@@ -43,7 +43,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 ),
                 reducer: appReducer,
                 environment: AppEnvironment(
-                    uuid: UUID.init
+                    uuid: UUID.init,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )
         )
